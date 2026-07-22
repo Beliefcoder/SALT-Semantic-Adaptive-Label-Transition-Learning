@@ -1,0 +1,48 @@
+{
+  "dataset": "car_qwen25_hidden_v1_oof_candidate_seed50",
+  "seed": 50,
+  "batch_size": 32,
+  "epochs": 40,
+  "optimizer": "AdamW",
+  "learning_rate": 0.00005,
+  "weight_decay": 0.01,
+  "gpu_dataset_cache_default": false,
+  "data_prior": {
+    "future_visit_window": 3,
+    "decay_factor": 0.7,
+    "normalization": "source-frequency normalization",
+    "sparsification": "row-wise top-20 non-self transitions",
+    "file": "standard/train/transition_T_decay_multi.npz"
+  },
+  "semantic_prior": {
+    "llm_encoder": "Qwen2.5-7B-Instruct",
+    "label_embedding_pooling": "mean hidden-state pooling",
+    "candidate_data_topk": 20,
+    "candidate_cosine_topk": 20,
+    "candidate_random_per_row": 4,
+    "positive_topk": 20,
+    "pseudo_negative_sampling": "candidate non-positive pairs",
+    "projector_optimizer": "AdamW",
+    "projector_learning_rate": 0.001,
+    "projector_batch_size": 512,
+    "projector_epochs": 10,
+    "lambda_reg": 0.5,
+    "oof_folds": 3,
+    "oof_split": "source-wise",
+    "semantic_threshold": 0.05,
+    "row_wise_topk_sem": 20,
+    "file": "standard/train/transition_T_llm.npz"
+  },
+  "salt_mainline": {
+    "sequence_encoder": "LSTM",
+    "hidden_size": 150,
+    "context_branch": "retain_attention",
+    "prior_injection": "dual T_data/T_sem propagation with sample-adaptive gate",
+    "transition_gate": "sample-adaptive scalar gate",
+    "tcrf": "improved TCRF",
+    "rif": true,
+    "packed_sequence": true,
+    "masked_attention": true,
+    "stream_feature_norm": true
+  }
+}

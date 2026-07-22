@@ -1,0 +1,8 @@
+numpy
+scipy
+scikit-learn
+pandas
+tqdm
+torch
+transformers
+safetensors

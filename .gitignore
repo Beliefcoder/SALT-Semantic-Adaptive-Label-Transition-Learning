@@ -1,0 +1,28 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Runtime outputs
+results/
+checkpoints/
+logs/
+*.log
+*.bak
+
+# Large or local model files
+io/models/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Keep the bundled processed paper dataset by default.
+!data/car_qwen25_hidden_v1_oof_candidate_seed50/

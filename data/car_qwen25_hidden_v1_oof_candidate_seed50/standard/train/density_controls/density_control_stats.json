@@ -1,0 +1,120 @@
+{
+  "dataset": "car_qwen25_hidden_v1",
+  "split": "train",
+  "data_transition": "data/car_qwen25_hidden_v1/standard/train/transition_T_decay_multi.npz",
+  "semantic_transition": "data/car_qwen25_hidden_v1/standard/train/transition_T_llm.npz",
+  "embedding_path": "data/car_qwen25_hidden_v1/artifacts/label_embeddings_llama3_fp16.pt",
+  "seed": 50,
+  "cos_value_mode": "sem_value_matched",
+  "semantic_new_edges_count": 14852,
+  "row_wise_density_control": true,
+  "matrices": [
+    {
+      "name": "T_data",
+      "shape": [
+        1584,
+        1584
+      ],
+      "nnz": 14743,
+      "density": 0.005875915085195388,
+      "new_edges_vs_T_data": 0,
+      "overlap_with_T_data": 14743,
+      "overlap_with_T_sem": 14075,
+      "mean_nonzero_value": 0.5640877485275269,
+      "max_value": 2.773099899291992
+    },
+    {
+      "name": "T_data_plus_T_sem",
+      "shape": [
+        1584,
+        1584
+      ],
+      "nnz": 29595,
+      "density": 0.011795272803795531,
+      "new_edges_vs_T_data": 14852,
+      "overlap_with_T_data": 14743,
+      "overlap_with_T_sem": 28927,
+      "mean_nonzero_value": 0.48738616704940796,
+      "max_value": 2.773099899291992
+    },
+    {
+      "name": "T_data_plus_T_rand",
+      "shape": [
+        1584,
+        1584
+      ],
+      "nnz": 29595,
+      "density": 0.011795272803795531,
+      "new_edges_vs_T_data": 14852,
+      "overlap_with_T_data": 14743,
+      "overlap_with_T_sem": 14187,
+      "mean_nonzero_value": 0.48738622665405273,
+      "max_value": 2.773099899291992
+    },
+    {
+      "name": "T_data_plus_T_cos",
+      "shape": [
+        1584,
+        1584
+      ],
+      "nnz": 29595,
+      "density": 0.011795272803795531,
+      "new_edges_vs_T_data": 14852,
+      "overlap_with_T_data": 14743,
+      "overlap_with_T_sem": 22955,
+      "mean_nonzero_value": 0.48738616704940796,
+      "max_value": 2.773099899291992
+    },
+    {
+      "name": "T_sem_branch",
+      "shape": [
+        1584,
+        1584
+      ],
+      "nnz": 28927,
+      "density": 0.011529037215590246,
+      "new_edges_vs_T_data": 14852,
+      "overlap_with_T_data": 14075,
+      "overlap_with_T_sem": 28927,
+      "mean_nonzero_value": 0.6437020301818848,
+      "max_value": 0.9969639182090759
+    },
+    {
+      "name": "T_rand_sem_branch",
+      "shape": [
+        1584,
+        1584
+      ],
+      "nnz": 28927,
+      "density": 0.011529037215590246,
+      "new_edges_vs_T_data": 14852,
+      "overlap_with_T_data": 14075,
+      "overlap_with_T_sem": 14187,
+      "mean_nonzero_value": 0.6437020301818848,
+      "max_value": 0.9969639182090759
+    },
+    {
+      "name": "T_cos_sem_branch",
+      "shape": [
+        1584,
+        1584
+      ],
+      "nnz": 28927,
+      "density": 0.011529037215590246,
+      "new_edges_vs_T_data": 14852,
+      "overlap_with_T_data": 14075,
+      "overlap_with_T_sem": 22955,
+      "mean_nonzero_value": 0.6437020301818848,
+      "max_value": 0.9969639182090759
+    }
+  ],
+  "output_paths": {
+    "T_data": "data/car_qwen25_hidden_v1/standard/train/density_controls/transition_T_data_only.npz",
+    "T_data_plus_T_sem": "data/car_qwen25_hidden_v1/standard/train/density_controls/transition_T_data_plus_T_sem_density_ref.npz",
+    "T_data_plus_T_rand": "data/car_qwen25_hidden_v1/standard/train/density_controls/transition_T_data_plus_T_rand_density_control.npz",
+    "T_data_plus_T_cos": "data/car_qwen25_hidden_v1/standard/train/density_controls/transition_T_data_plus_T_cos_sem_value_matched_density_control.npz",
+    "T_sem_branch": "data/car_qwen25_hidden_v1/standard/train/density_controls/transition_T_sem_branch_density_ref.npz",
+    "T_rand_sem_branch": "data/car_qwen25_hidden_v1/standard/train/density_controls/transition_T_rand_sem_branch_density_control.npz",
+    "T_cos_sem_branch": "data/car_qwen25_hidden_v1/standard/train/density_controls/transition_T_cos_sem_value_matched_sem_branch_density_control.npz"
+  }
+}
