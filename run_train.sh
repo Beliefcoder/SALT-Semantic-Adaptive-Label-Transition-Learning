@@ -23,7 +23,7 @@ done
 
 CUDA_VISIBLE_DEVICES="${GPU}" python train_salt.py \
   --gpu 0 \
-  --dataset car_qwen25_hidden_v1_oof_candidate_seed50 \
+  --dataset data \
   --seed 50 \
   --epochs 40 \
   --batch-size 32 \

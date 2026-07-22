@@ -1,10 +1,10 @@
-{
+﻿{
   "rows": 1584,
   "cols": 1584,
   "total_pairs": 2509056,
   "nonzero_pairs": 29172,
   "coverage_ratio": 0.011626683501683503,
-  "dataset": "car_qwen25_hidden_v1_oof_candidate_seed50",
+  "dataset": "data",
   "transition_variant": "decay_multi",
   "score_all_pairs": false,
   "oof_overlap": true,
@@ -34,7 +34,7 @@
   "oof_positive_topk_retention_ratio": 0.8975172413793103,
   "scored_pair_count": 52223,
   "candidate_coverage_ratio": 0.020826952404652974,
-  "output_path": "/opt/data/private/wzx/standalone_salt_fullsem_mainline/data/car_qwen25_hidden_v1_oof_candidate_seed50/standard/train/transition_T_llm.npz",
-  "artifact_transition": "/opt/data/private/wzx/standalone_salt_fullsem_mainline/data/car_qwen25_hidden_v1_oof_candidate_seed50/artifacts/oof_candidate.npz",
-  "artifact_oof_diagnostics": "/opt/data/private/wzx/standalone_salt_fullsem_mainline/data/car_qwen25_hidden_v1_oof_candidate_seed50/artifacts/oof_candidate_oof_score_diagnostics.npz"
+  "output_path": "/opt/data/private/wzx/standalone_salt_fullsem_mainline/data/data/standard/train/transition_T_llm.npz",
+  "artifact_transition": "/opt/data/private/wzx/standalone_salt_fullsem_mainline/data/data/artifacts/oof_candidate.npz",
+  "artifact_oof_diagnostics": "/opt/data/private/wzx/standalone_salt_fullsem_mainline/data/data/artifacts/oof_candidate_oof_score_diagnostics.npz"
 }

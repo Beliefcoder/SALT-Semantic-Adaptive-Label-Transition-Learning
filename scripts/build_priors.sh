@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DATASET="car_qwen25_hidden_v1_oof_candidate_seed50"
+DATASET="data"
 GPU="${1:-0}"
 MODEL_PATH="${MODEL_PATH:-io/models/Qwen2.5-7B-Instruct}"
 

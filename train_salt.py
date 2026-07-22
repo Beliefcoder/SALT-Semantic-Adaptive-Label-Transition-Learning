@@ -61,7 +61,7 @@ def historical_hot(data_path, code_num, use_all_history=False):
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Train the fixed SALT mainline model.")
-    parser.add_argument("--dataset", default="car_qwen25_hidden_v1_oof_candidate_seed50")
+    parser.add_argument("--dataset", default="data")
     parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument("--no-cuda", action="store_true")
     parser.add_argument("--cache-dataset-on-gpu", action="store_true",

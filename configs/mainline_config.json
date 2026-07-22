@@ -1,5 +1,5 @@
 {
-  "dataset": "car_qwen25_hidden_v1_oof_candidate_seed50",
+  "dataset": "data",
   "seed": 50,
   "batch_size": 32,
   "epochs": 40,

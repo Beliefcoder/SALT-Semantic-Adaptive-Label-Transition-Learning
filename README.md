@@ -3,7 +3,7 @@
 This directory is a cleaned paper-facing version of the SALT mainline.
 It keeps only the fixed paper configuration:
 
-- dataset: `car_qwen25_hidden_v1_oof_candidate_seed50`
+- dataset: `data`
 - empirical prior: `T_data`, time-decayed future transition matrix
 - semantic prior: `T_sem`, Qwen label representation + supervised semantic projector + 3-fold OOF scoring
 - model: LSTM encoder + dual-prior propagation + sample-adaptive fusion + TCRF + RIF
@@ -12,7 +12,7 @@ It keeps only the fixed paper configuration:
 ## Directory Layout
 
 ```text
-data/car_qwen25_hidden_v1_oof_candidate_seed50/
+data/data/
   encoded/
   standard/train/
     transition_T_decay_multi.npz
@@ -52,7 +52,7 @@ bash run_train.sh --gpu 0 --cache-dataset-on-gpu
 Outputs are saved to:
 
 ```text
-results/car_qwen25_hidden_v1_oof_candidate_seed50/
+results/data/
 ```
 
 The printed evaluation line is intentionally compact:
