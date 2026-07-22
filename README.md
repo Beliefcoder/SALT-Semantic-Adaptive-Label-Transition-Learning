@@ -1,107 +1,60 @@
-# SALT Paper Mainline Repository
+# SALT: Semantic-Adaptive Label Transition Learning
 
-This directory is a cleaned paper-facing version of the SALT mainline.
-It keeps only the fixed paper configuration:
+This is the clean paper repository for the fixed SALT mainline.
 
-- dataset: `data`
-- empirical prior: `T_data`, time-decayed future transition matrix
-- semantic prior: `T_sem`, Qwen label representation + supervised semantic projector + 3-fold OOF scoring
-- model: LSTM encoder + dual-prior propagation + sample-adaptive fusion + TCRF + RIF
-- training: seed `50`, batch size `32`, max epochs `40`
-
-## Directory Layout
+## Contents
 
 ```text
-data/data/
-  encoded/
-  standard/train/
-    transition_T_decay_multi.npz
-    transition_T_llm.npz
-  standard/valid/
-  standard/test/
-
-models/
-  model.py
-  layers.py
-
-preprocess/
-  generate_transition.py
-  extract_llama_label_embeddings.py
-  build_semantic_transition_advanced.py
-  train_semantic_projector.py
-
-train_salt.py
-run_train.sh
+data/data/                 processed dataset and fixed transition priors
+models/                    SALT model implementation
+preprocess/                data and prior construction scripts
+train_salt.py              fixed mainline training entry
+run_train.sh               simple training wrapper
+scripts/build_priors.sh    rebuild T_data and T_sem
 configs/mainline_config.json
 ```
 
 ## Main Training
 
-Default training does not cache the full dataset on GPU.
+Default setting: seed `50`, batch size `32`, max epochs `40`.
+GPU dataset cache is off by default.
 
 ```bash
 bash run_train.sh --gpu 0
 ```
 
-Enable GPU dataset cache only when the GPU has enough free memory:
+Optional GPU cache:
 
 ```bash
 bash run_train.sh --gpu 0 --cache-dataset-on-gpu
 ```
 
-Outputs are saved to:
+Results are saved to:
 
 ```text
 results/data/
 ```
 
-The printed evaluation line is intentionally compact:
-
-```text
-Validation Evaluation: loss ... f1_score ... micro_auprc ... top_k_precision ... top_k_recall ... seen_recall ...
-```
-
-`Not_Occurred` and unseen metrics are not printed or saved in this clean mainline entry.
-Long-tail bucket output keeps only bucket F1 values.
-
 ## Prior Construction
 
-The included dataset already contains the fixed priors:
+The released dataset already includes:
 
 ```text
-standard/train/transition_T_decay_multi.npz
-standard/train/transition_T_llm.npz
+data/data/standard/train/transition_T_decay_multi.npz
+data/data/standard/train/transition_T_llm.npz
 ```
 
-To rebuild them:
+To rebuild the priors:
 
 ```bash
-MODEL_PATH=io/models/Qwen2.5-7B-Instruct bash scripts/build_priors.sh 0
+MODEL_PATH=io/models/Qwen2.5-7B-base bash scripts/build_priors.sh 0
 ```
 
-Fixed prior parameters:
+Main prior settings:
 
 ```text
-T_data:
-  future visit window K_w = 3
-  decay gamma = 0.7
-  source-frequency normalization
-  row-wise top-k = 20
-
-T_sem:
-  candidate data top-k = 20
-  candidate cosine top-k = 20
-  random candidates per source = 4
-  positive top-k = 20
-  projector epochs = 10
-  projector batch size = 512
-  projector lr = 1e-3
-  lambda_reg = 0.5
-  OOF folds = 3
-  semantic threshold = 0.05
-  row-wise K_sem = 20
+T_data: K_w=3, gamma=0.7, row-wise top-20
+T_sem: Qwen2.5-7B base embeddings, 20/20/4 candidates, 3-fold OOF scoring,
+       projector epochs=50, batch size=512, lr=1e-3, lambda_reg=0.5,
+       threshold=0.05, row-wise K_sem=20
 ```
-
-## Notes
-
-This repository is intended for the paper mainline only. Ablation switches, exploratory branches, external baselines, binary-system tasks, and failed-run logs should remain outside this clean directory.
